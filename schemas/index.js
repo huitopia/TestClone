@@ -3,12 +3,12 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-// const production = process.env.DB_PRODUCTION;
-const dev = process.env.DB_DEV;
+const production = process.env.DB_PRODUCTION;
+// const dev = process.env.DB_DEV;
 
 const connect = () => {
   mongoose
-    .connect(dev, {
+    .connect(production, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
