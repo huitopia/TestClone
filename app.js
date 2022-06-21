@@ -8,6 +8,7 @@ const morgan = require('morgan');
 
 // -- router
 const userRouter = require('./routes/user');
+const postRouter = require('./routes/post');
 
 // -- DB
 const connect = require('./schemas');
@@ -22,8 +23,9 @@ app.use(morgan('dev'));
 app.get('/', function (req, res) {
   res.send('hello NodeJs');
 });
-// app.use('/user', express.urlencoded({ extended: false }), userRouter);
-app.use('/user', require('./routes/user'));
+
+app.use('/user', express.urlencoded({ extended: false }), userRouter);
+app.use('/posts', express.urlencoded({ extended: false }), postRouter);
 
 app.listen(port, () => console.log(`http://localhost:${port}`));
 

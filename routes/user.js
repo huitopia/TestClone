@@ -33,7 +33,7 @@ router.post('/signup', async (req, res) => {
   let userName = userInfo.userName;
 
   try {
-    const recentUser = await User.find().sort('userIdx').limit(1);
+    const recentUser = await User.find().sort('-userIdx').limit(1);
     let userIdx = 1;
     if (recentUser.length != 0) {
       userIdx = recentUser[0]['userIdx'] + 1;
