@@ -5,7 +5,7 @@ const authMiddleware = require('../middlewares/auth-middleware');
 
 // -- 게시글 작성
 router.post('/post', authMiddleware, async (req, res) => {
-  const { title, description } = req.body;
+  const { image, title, description } = req.body;
   const { user } = res.locals;
   const { userIdx } = user;
   const { userName } = user;
@@ -22,6 +22,7 @@ router.post('/post', authMiddleware, async (req, res) => {
       postIdx,
       userIdx,
       userName,
+      image,
       title,
       description,
     });
@@ -42,7 +43,10 @@ router.post('/post', authMiddleware, async (req, res) => {
 // -- 게시글 전체 조회
 router.get('/', async (req, res) => {
   try {
-    const body = await Post.find({}, { _id: 0, postIdx: 1, userName: 1 })
+    const body = await Post.find(
+      {},
+      { _id: 0, postIdx: 1, userName: 1, image: 1 },
+    )
       .sort('-postIdx')
       .limit();
 
@@ -64,7 +68,7 @@ router.get('/:postIdx', async (req, res) => {
   try {
     const body = await Post.findOne(
       { postIdx },
-      { _id: 0, postIdx: 1, userName: 1, title: 1, description: 1 },
+      { _id: 0, postIdx: 1, userName: 1, image: 1, title: 1, description: 1 },
     )
       .sort('-postIdx')
       .limit();

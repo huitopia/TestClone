@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -12,11 +12,11 @@ const connect = () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };
 
-mongoose.connection.on('error', err => {
-  console.error('mongodb connect error', err);
+mongoose.connection.on("error", (err) => {
+  console.error("mongodb connect error", err);
 });
 
 module.exports = connect;
